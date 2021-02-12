@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+
+int main(int argc, char **argv) {
+	int i,n,x,y;
+	char s[30];
+	char fname[] = "guessingLog.txt";
+	printf("ENTER YOUR NAME\n");
+	scanf("%s",&s);
+	srand(time(NULL));
+	n =rand()% 200 ;
+	FILE * fpointer;
+    fpointer = fopen("C:guessingLog.txt", "a");
+    if(fpointer == NULL) {
+    	printf("Could not open file\n");
+    return -1;
+     }
+	
+	
+
+    for (i = 0; i < 10; i++){
+        printf("GUESS THE NUMBER LESS THAN 200 AND GREATER THAN 1!!!!\n");
+	    x=scanf("%d",&y);
+		
+		fprintf(fpointer, "%s , %d , %d\n",s,i+1,y);
+		
+		if((y>=200) || (y<=1)){
+			scanf ("%*[^\n]");
+	        printf("TRY AGAIN\n");
+			continue;
+		}
+		
+        if(x!=1){
+			scanf ("%*[^\n]");
+	        printf("TRY AGAIN\n");
+		    continue;
+		}
+		if(n == y){
+			printf("CONGRATULATIONS %s!!YOU WON..\n",s);
+			break;
+		}
+		else if(y > n){
+			printf("SORRY %s!!.YOU LOST, YOUR GUESSING IS TOO HIGH\n",s);
+		}	
+		else {
+			printf("SORRY %s!!.YOU LOST, YOUR GUESSING IS TOO LOW\n",s);
+			
+		}
+		
+	
+    
+       
+	}
+	 fclose (fpointer);    
+    
+    return 0;
+}
+		
+	
+	
